@@ -1,2 +1,45 @@
-<h1>Posts#show</h1>
-<p>Find me in app/views/posts/show.html.erb</p>
+<div class="container col-lg-6">
+    <div class="card mb-3 mt-4" style="width: 30rem;">
+        <div class="card-body">
+            <h2 class="card-title"><%= @post.title %></h2>
+            <p class="card-text"><%= @post.content %></p>
+            <span> Updated at :  <%= @post.updated_at %> </span>    
+        </div>
+    </div>
+    <%= form_tag( comments_path(id=@post.id), method: "post") do %>
+        <div class="form-group">
+            <%= label_tag(:content, "Add Comment", class: "form-control") %>
+            <%= text_area_tag(:content, nil , class: "form-control") %>
+            <%= submit_tag("Add", class: "btn btn-success btn-block" )%>
+        </div>
+    <% end %>
+
+         
+        <% flash.each do |type, msg| %>
+            <div>
+            <div class="alert alert-danger">
+                <ul>
+                    <% msg.each do |message|%>
+                        <li>
+                            <%= message %>
+                        </li>
+                    <% end %>
+                </ul>
+            </div>
+            </div>
+        <% end %>
+
+    <h2>Comments</h2>
+
+    <% @comments.each do |comment| %> 
+        <div class="card mb-3 mr-3 mt-3" style="width: 18rem;">
+            <div class="card-body">
+                <p class="card-text"><%= comment.content %></p>
+                <%= link_to 'delete' , comment , method: :delete , class:"card-link" %>
+            </div>
+        </div>
+    <% end %>
+</div>
+
+
+

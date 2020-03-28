@@ -1,0 +1,22 @@
+<%= form_for( @post, url: @post) do |f| %>
+    <div class="alert alert-danger">
+        <ul>
+            <% @post.errors.full_messages.each do |message|%>
+            <li>
+                <%= message %>  
+            </li>
+            <% end %>
+        </ul>
+    </div>
+<% end %>
+
+<%= form_for( @post, url: @post) do |f| %>
+<div class="form-group">
+    <%= label_tag(:title, "Title :") %>
+    <%= f.text_field(:title, class: "form-control") %>
+    <%= label_tag(:content, "Content :") %>
+    <%= f.text_area(:content, class: "form-control") %>
+    <%= submit_tag btnt, class: "btn btn-#{btnc} btn-block" %>
+</div>
+<% end %>
+
